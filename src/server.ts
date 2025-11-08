@@ -1,9 +1,8 @@
 import dotenv from "dotenv";
 dotenv.config();
-
-import mongoose from "mongoose";
 import { app } from "./app";
 import { envVars } from "./app/config/envVars";
+import mongoose from "mongoose";
 
 async function main() {
   await mongoose.connect(envVars.DB_URL);

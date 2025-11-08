@@ -22,14 +22,15 @@ const router = Router();
 
 // create route (admin)
 router.post(
-  "/routes",
-  checkAuth(Role.ADMIN),
+  "/create-route",
+  // checkAuth(Role.ADMIN),
+   validateRequest(createRouteSchema),
  // cast if your validateRequest expects ZodObject<any, any>
   RouteController.createRoute
 );
 
 // get all routes (public)
-router.get("/routes", RouteController.getAllRoutes);
+router.get("/", RouteController.getAllRoutes);
 
 // get single route (public)
 router.get("/routes/:id",  RouteController.getSingleRoute);
