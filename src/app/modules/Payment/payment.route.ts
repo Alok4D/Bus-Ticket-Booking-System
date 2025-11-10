@@ -1,22 +1,17 @@
-import { Router } from "express";
+import express from "express";
 import { PaymentController } from "./payment.controller";
-import { checkAuth } from "../../middleware/checkAuth";
-import { Role } from "../user/user.interface";
-import validateRequest from "../../middleware/validateRequest";
-import { createSessionSchema, verifyPaymentSchema, getPaymentByBookingSchema } from "./payment.validation";
 
-const router = Router();
+const router = express.Router();
 
-// Create Stripe Checkout Session
-router.post("/create-session", checkAuth(Role.USER), validateRequest(createSessionSchema), PaymentController.createCheckoutSession);
-
-// Verify Payment after Stripe success
-router.post("/verify-payment", checkAuth(Role.USER), validateRequest(verifyPaymentSchema), PaymentController.verifyPayment);
-
-// Get user payment history
-router.get("/my-payments", checkAuth(Role.USER), PaymentController.getUserPayments);
-
-// Get payment by booking ID
-router.get("/booking/:bookingId", checkAuth(Role.USER), validateRequest(getPaymentByBookingSchema), PaymentController.getPaymentByBooking);
+router.post("/ssl-create", PaymentController.createSSLPayment);
+router.get("/success", PaymentController.sslSuccess);
+router.post("/success", PaymentController.sslSuccess);
+router.get("/fail", PaymentController.sslFail);
+router.post("/fail", PaymentController.sslFail);
+router.get("/cancel", PaymentController.sslCancel);
+router.post("/cancel", PaymentController.sslCancel);
+router.post("/ssl-ipn", PaymentController.sslIPN);
+router.get("/user/:userId", PaymentController.getUserPayments);
+router.get("/all", PaymentController.getAllPayments);
 
 export const PaymentRoutes = router;

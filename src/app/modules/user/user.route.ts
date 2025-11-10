@@ -10,6 +10,8 @@ const router = Router();
 // /api/v1
 
 router.post("/register", UserControllers.createUser);
-router.get("/all-users", checkAuth(Role.ADMIN), UserControllers.getAllUsers);
+router.get("/all-users", 
+    // checkAuth(Role.ADMIN),
+     UserControllers.getAllUsers);
 
 export const UserRoutes = router;

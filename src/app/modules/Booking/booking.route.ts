@@ -24,7 +24,11 @@ router.get(
   BookingController.getUserBookings
 );
 
-router.get("/", checkAuth(Role.ADMIN), BookingController.getAllBookings);
+router.get(
+  "/",
+  // checkAuth(Role.ADMIN),
+  BookingController.getAllBookings
+);
 
 router.get(
   "/:id",

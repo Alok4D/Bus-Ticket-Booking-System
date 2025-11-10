@@ -6,6 +6,7 @@ import { RouteRoutes } from "../modules/route/route.route";
 import { BusRoutes } from "../modules/Bus/bus.route";
 import { BookingRoutes } from "../modules/Booking/booking.route";
 import { PaymentRoutes } from "../modules/Payment/payment.route";
+import { AdminRoutes } from "../modules/Admin/admin.routes";
 
 const router = Router();
 
@@ -33,6 +34,10 @@ const moduleRoutes = [
   {
     path: "/payment",
     route: PaymentRoutes,
+  },
+  {
+    path: "/admin",
+    route: AdminRoutes,
   },
 ];
 

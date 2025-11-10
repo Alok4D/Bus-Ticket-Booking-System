@@ -1,18 +1,16 @@
-import mongoose from "mongoose";
-import { TPayment } from "./payment.interface";
+import { model, Schema } from "mongoose";
+import { IPayment, PAYMENT_STATUS } from "./payment.interface";
 
-const paymentSchema = new mongoose.Schema<TPayment>(
-  {
-    user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-    booking: { type: mongoose.Schema.Types.ObjectId, ref: "Booking", required: true },
-    amount: { type: Number, required: true, min: 0 },
-    transactionId: { type: String, required: true, unique: true },
-    paymentMethod: { type: String, enum: ["stripe", "cash"], default: "stripe" },
-    paymentStatus: { type: String, enum: ["pending", "success", "failed", "refunded"], default: "pending" },
-    paymentDate: { type: Date, default: Date.now },
-    stripeSessionId: { type: String },
-  },
-  { timestamps: true }
-);
+const paymentSchema = new Schema<IPayment>({
+  user: { type: Schema.Types.ObjectId, ref: "User", required: true },
+  booking: { type: Schema.Types.ObjectId, ref: "Booking", required: true },
+  transactionId: { type: String, required: true },
+  amount: { type: Number, required: true },
+  paymentMethod: { type: String, enum: ["sslcommerz", "cash"], default: "sslcommerz" },
+  paymentStatus: { type: String, enum: Object.values(PAYMENT_STATUS), default: PAYMENT_STATUS.PENDING },
+  sslSessionId: { type: String },
+  gatewayData: { type: Schema.Types.Mixed },
+  paymentDate: { type: Date, default: Date.now },
+}, { timestamps: true, versionKey: false });
 
-export const PaymentModel = mongoose.model<TPayment>("Payment", paymentSchema);
+export const PaymentModel = model<IPayment>("Payment", paymentSchema);
