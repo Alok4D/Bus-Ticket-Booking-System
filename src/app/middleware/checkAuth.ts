@@ -4,8 +4,7 @@ import jwt from "jsonwebtoken";
 import { NextFunction, Request, Response } from "express";
 import { User } from "../modules/user/user.model";
 
-export const checkAuth =
-  (...authRoles: string[]) =>
+export const checkAuth = (...authRoles: string[]) =>
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const authHeader = req.headers.authorization;
@@ -17,11 +16,13 @@ export const checkAuth =
       }
 
       const token = authHeader.split(" ")[1];
+      // console.log("token", token);
 
       const verifiedToken = jwt.verify(
         token,
         envVars.JWT_ACCESS_SECRET
       ) as JwtPayload;
+      console.log(verifiedToken);
 
       const isUserExist = await User.findOne({ email: verifiedToken.email });
       if (!isUserExist) {
@@ -31,15 +32,15 @@ export const checkAuth =
       }
 
       if (!authRoles.includes(verifiedToken.role)) {
-        return res
-          .status(403)
-          .json({
-            success: false,
-            message: "You are not permitted to view this route",
-          });
+        return res.status(403).json({
+          success: false,
+          message: "You are not permitted to view this route",
+        });
       }
 
-      req.user = verifiedToken;
+      req.user = isUserExist;
+
+      console.log(req.user);
       next();
     } catch (error: any) {
       console.error(error);

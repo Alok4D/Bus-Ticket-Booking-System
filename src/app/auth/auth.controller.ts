@@ -9,20 +9,20 @@ const credentialsLogin = async (
 ) => {
   try {
     const loginInfo = await AuthServices.credentialsLogin(req.body);
-    console.log(loginInfo);
-
-    res.cookie("accessToken", loginInfo.accessToken, {
-      httpOnly: true,
-      secure: false,
-    });
 
     res.status(httpStatus.OK).json({
       success: true,
-      message: "User Logged in successfully!",
-      user: loginInfo,
+      message: "User logged in successfully!",
+      data: {
+        accessToken: loginInfo.accessToken,
+        user: loginInfo.user,
+      },
     });
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    res.status(httpStatus.UNAUTHORIZED).json({
+      success: false,
+      message: error.message || "Login failed",
+    });
   }
 };
 

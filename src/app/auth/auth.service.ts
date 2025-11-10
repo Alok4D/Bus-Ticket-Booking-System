@@ -9,13 +9,14 @@ const credentialsLogin = async (payload: IUser) => {
   const { email, password } = payload;
 
   const isUserExist = await User.findOne({ email });
-  //   console.log(isUserExist);
+  if (!isUserExist) {
+    throw new Error("User not found");
+  }
 
   const isPasswordMatched = await bcrypt.compare(
     password as string,
-    isUserExist?.password as string
+    isUserExist.password as string
   );
-  //   console.log(isPasswordMatched);
 
   if (!isPasswordMatched) {
     throw new Error("Incorrect Password");

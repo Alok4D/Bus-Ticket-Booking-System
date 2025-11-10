@@ -7,6 +7,8 @@ interface EnvConfig {
   NODE_ENV: "development" | "production";
   JWT_ACCESS_SECRET: string;
   JWT_ACCESS_EXPIRES: string;
+  STRIPE_SECRET_KEY?: string;
+  FRONTEND_URL?: string;
 }
 
 const loadEnvVariables = (): EnvConfig => {
@@ -23,7 +25,9 @@ const loadEnvVariables = (): EnvConfig => {
     DB_URL: process.env.DB_URL as string,
     NODE_ENV: process.env.NODE_ENV as "development" | "production",
     JWT_ACCESS_SECRET: process.env.JWT_ACCESS_SECRET as string,
-    JWT_ACCESS_EXPIRES: process.env.JWT_ACCESS_EXPIRES as string
+    JWT_ACCESS_EXPIRES: process.env.JWT_ACCESS_EXPIRES as string,
+    STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+    FRONTEND_URL: process.env.FRONTEND_URL
   };
 };
 

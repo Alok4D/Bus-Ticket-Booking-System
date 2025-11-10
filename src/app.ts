@@ -6,7 +6,6 @@ import cors from "cors";
 import { UserRoutes } from "./app/modules/user/user.route";
 import { AuthRoutes } from "./app/auth/auth.route";
 import router from "./app/routes";
-import { BusRoutes } from "./app/modules/Bus/bus.route";
 
 export const app: Application = express();
 
