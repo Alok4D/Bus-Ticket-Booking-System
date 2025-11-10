@@ -1,26 +1,21 @@
-# 🧭 LMS & Digital Product Sales Platform (Fullstack)
+# 🚌 Bus Ticket Booking System (Backend)
 
-### 📚 All-in-One Online Learning & Digital Product Platform
+### 🎫 Complete Bus Reservation & Payment Management System
 
-A full-featured, bilingual LMS and Digital Product Marketplace — combining **eLearning**, **Live Events**, and **Digital Product Sales** in one scalable system.
+A full-featured **Bus Ticket Booking System** with secure payment integration, user management, and admin dashboard for managing bus operations.
 
 ---
 
 ## 🚀 Project Overview
 
-The goal of this project is to build a **complete online learning and digital marketplace platform** where:
+This project is a **complete bus ticket booking platform** where:
 
-- Students can **purchase and learn pre-recorded video courses**.
-- Admins can **share live meeting links** for Zoom/Google Meet sessions.
-- Users can **buy and download digital products**, such as:
-  - Chrome Extensions
-  - Software Plugins
-  - WordPress Plugins
-  - E-books
-  - Other downloadable assets
-- Payment supported for both **local and international gateways**.
-- Fully **bilingual system** — all content, UI, and course dubbing switchable between Bangla and English.
-- **Admin-controlled system** (No Instructor Panel).
+- **Users** can search, book, and pay for bus tickets
+- **Admins** can manage buses, routes, bookings, and payments
+- **Secure payment** processing with SSLCommerz integration
+- **JWT-based authentication** with refresh token support
+- **Role-based access control** for users and admins
+- **Real-time booking** management and seat availability
 
 ---
 
@@ -30,140 +25,181 @@ The goal of this project is to build a **complete online learning and digital ma
 
 | Role        | Access & Features                                                                     |
 | ----------- | ------------------------------------------------------------------------------------- |
-| **Admin**   | Manage Courses, Digital Products, Payments, Users, and System Settings                |
-| **Student** | Buy & Access Courses, Join Meetings, Download Digital Products, Payments, and Reviews |
+| **Admin**   | Manage Buses, Routes, Bookings, Users, Payments, and System Analytics                |
+| **User**    | Search Buses, Book Tickets, Make Payments, View Booking History                      |
 
 ---
 
-### 📚 LMS (Learning Management System)
+### 🚌 Bus Management
 
-- Pre-recorded video course support
-- Course module & lesson management
-- Secure video streaming (anti-piracy enabled)
-- Course progress tracking
-- Optional quizzes & assignments
-- Video/Text reviews by students
-- Course exams & auto certificate generation (with admin approval)
-- Course search, filter, cart, and coupon system
-- Enrollment history & transaction log
+- Bus registration with details (name, number, capacity, type)
+- Route assignment and scheduling
+- Seat configuration and availability tracking
+- Bus status management (active/inactive)
+- Real-time seat booking and reservation
 
 ---
 
-### 📅 Live Meeting Integration
+### 🛣️ Route Management
 
-- Zoom / Google Meet integration
-- Admin-side live link scheduling
-- Student dashboard “Join Meeting” button
-- Meeting reminders (Email/SMS optional)
-- Post-meeting recording link (optional)
-
----
-
-### 💻 Digital Product Marketplace
-
-- Product listing + details page
-- Support for Chrome Extensions, Plugins, E-books, etc.
-- Auto license key / download link delivery
-- Version update management
-- Download limit control (optional)
+- Route creation with source and destination
+- Distance and duration tracking
+- Fare calculation based on route
+- Multiple routes per bus support
+- Route status management
 
 ---
 
-### 🎉 Seminar / Event Management
+### 📅 Booking System
 
-- Create & manage events/seminars from Admin Panel
-- Free/Paid registration system
-- Attach live meeting links
-- Event reminder and participant tracking
-- Attendance record system
+- Real-time seat availability checking
+- Multiple seat selection
+- Booking confirmation and ticket generation
+- Booking status tracking (pending, confirmed, cancelled)
+- Journey date and time management
 
 ---
 
-## 💳 Payment Gateway Integration
+### 💳 Payment Integration
 
-Supports both **Local** and **International** gateways:
-
-| Type          | Gateways                                               |
-| ------------- | ------------------------------------------------------ |
-| Local         | ✅ SSLCommerz, ✅ aamarPay, ✅ bKash, ✅ Bank Transfer |
-| International | ✅ Stripe, ✅ PayPal                                   |
+**Local Payment Gateway:**
+- ✅ **SSLCommerz** - Primary payment gateway
+- 💳 Credit/Debit Cards (Visa, MasterCard, American Express)
+- 📱 Mobile Banking (bKash, Rocket, Nagad, Upay)
+- 🏦 Internet Banking (All major Bangladeshi banks)
+- 🏪 Over The Counter payments
 
 ### Payment Features
 
-- Auto invoice generation
-- Coupon & discount system
-- User transaction history
-- Admin payment reports (filter, export PDF/CSV)
-- Manual payment verification
+- Secure payment processing
+- Real-time payment verification
+- Automatic booking confirmation
+- Payment history and receipts
+- Refund management
+- Transaction logging
 
 ---
 
-## 🧑‍💼 Admin Dashboard Features
+## 🔐 Authentication & Security
 
-- ✅ Course Management (CRUD, Upload, Price & Discount, Category & Tags)
-- ✅ Digital Product Management (License Key, Version Update)
-- ✅ Meeting Management (Schedule, Notifications)
-- ✅ User Management (Active/Block, History, Manual Payment)
-- ✅ Payment Reports & Export
-- ✅ Event Management
-- ✅ Certification Management (Exam/Test, Auto Approve)
-- ✅ System Settings (Branding, SMTP, SEO, Backup)
-- ✅ Notification Center (Email, In-App, Manual Announcement)
-- ✅ Analytics Dashboard (Users, Revenue, Sales, Graphs)
+### JWT Authentication
+- **Access Token**: 15 minutes expiry
+- **Refresh Token**: 7 days expiry (httpOnly cookie)
+- **Secure logout** with token cleanup
+- **Forgot password** with email reset
+
+### Security Features
+- Password hashing with bcrypt
+- Rate limiting for API endpoints
+- Input sanitization and validation
+- CORS protection
+- Security headers with Helmet
+- Request logging and monitoring
 
 ---
 
-## 👨‍🎓 Student Dashboard Features
+## 🧑💼 Admin Dashboard Features
 
-- My Courses + Progress Tracking
-- Live Meeting & Schedule
-- Download Purchased Digital Products
-- Transaction & Invoice Download
-- Review Submission (Video/Text)
-- Seminar/Event Registration
-- Auto Certification (Admin Approval)
-- Language Switch (বাংলা / English)
-- Support Ticket / Help Center (optional)
+- ✅ **User Management** (View, Block/Unblock users)
+- ✅ **Bus Management** (CRUD operations, status control)
+- ✅ **Route Management** (Create, update, delete routes)
+- ✅ **Booking Management** (View all bookings, status updates)
+- ✅ **Payment Reports** (Transaction history, revenue analytics)
+- ✅ **Dashboard Analytics** (Users, bookings, revenue statistics)
+- ✅ **System Settings** (Configuration management)
+
+---
+
+## 👨🎓 User Features
+
+- **Account Management** (Register, login, profile update)
+- **Bus Search** (By route, date, availability)
+- **Seat Selection** (Interactive seat map)
+- **Secure Booking** (Real-time confirmation)
+- **Payment Processing** (Multiple payment options)
+- **Booking History** (Past and upcoming journeys)
+- **Ticket Management** (Download, view details)
 
 ---
 
 ## 🧰 Technology Stack
 
-| Layer               | Technology                                                 |
-| ------------------- | ---------------------------------------------------------- |
-| **Frontend**        | Next.js, Tailwind CSS, TypeScript                          |
-| **Backend**         | Node.js, Express.js                                        |
-| **Database**        | MongoDB                                                    |
-| **Payments**        | SSLCommerz, aamarPay, bKash, Bank Transfer, Stripe, PayPal |
-| **Storage**         | AWS S3 / Cloudinary                                        |
-| **Hosting**         | Vercel (Frontend), AWS / Render (Backend)                  |
-| **Auth & Security** | JWT, Bcrypt, HTTPS                                         |
+| Layer               | Technology                                    |
+| ------------------- | --------------------------------------------- |
+| **Backend**         | Node.js, Express.js, TypeScript              |
+| **Database**        | MongoDB with Mongoose ODM                    |
+| **Authentication**  | JWT (Access + Refresh Tokens)                |
+| **Payment**         | SSLCommerz (Bangladesh)                       |
+| **Security**        | Bcrypt, Helmet, Rate Limiting                |
+| **Validation**      | Zod Schema Validation                         |
+| **Environment**     | dotenv Configuration                          |
 
 ---
 
-## 🔐 Security & Performance
+## 📝 API Endpoints
 
-- JWT Authentication & Role-based Access
-- Password Encryption (Bcrypt)
-- DDoS Protection & Firewall
-- CDN & Cache Optimization
-- Database Backup & Recovery
-- Secure Video Streaming (Anti Piracy)
-- License Protection for Digital Products
+### Authentication
+```
+POST /api/auth/login              # User login
+POST /api/auth/refresh-token      # Refresh access token
+POST /api/auth/logout             # Logout current device
+POST /api/auth/logout-all         # Logout all devices
+POST /api/auth/forgot-password    # Send reset token
+POST /api/auth/reset-password     # Reset password
+```
 
----
+### User Management
+```
+POST /api/user/register           # User registration
+GET  /api/user/all-users          # Get all users (Admin)
+```
 
-## 🧪 Testing & Quality Assurance
+### Bus Management
+```
+GET    /api/bus                   # Get all buses
+POST   /api/bus                   # Create bus (Admin)
+GET    /api/bus/:id               # Get bus details
+PUT    /api/bus/:id               # Update bus (Admin)
+DELETE /api/bus/:id               # Delete bus (Admin)
+```
 
-- Unit & Integration Testing
-- Manual & Automated QA
-- Load Testing for High Traffic
-- Security Audit & Vulnerability Fixes
-- Bug Fixing & UAT (User Acceptance Testing)
+### Route Management
+```
+GET    /api/route                 # Get all routes
+POST   /api/route                 # Create route (Admin)
+GET    /api/route/:id             # Get route details
+PUT    /api/route/:id             # Update route (Admin)
+DELETE /api/route/:id             # Delete route (Admin)
+```
 
----
+### Booking Management
+```
+GET    /api/booking               # Get user bookings
+POST   /api/booking               # Create booking
+GET    /api/booking/:id           # Get booking details
+PUT    /api/booking/:id           # Update booking
+DELETE /api/booking/:id           # Cancel booking
+```
 
-## 🧩 System Architecture (Overview)
+### Payment Processing
+```
+POST /api/payment/ssl-create      # Initialize SSL payment
+GET  /api/payment/success         # Payment success callback
+GET  /api/payment/fail            # Payment failure callback
+GET  /api/payment/cancel          # Payment cancel callback
+GET  /api/payment/user/:userId    # User payment history
+GET  /api/payment/all             # All payments (Admin)
+```
+
+### Admin Dashboard
+```
+POST /api/admin/login             # Admin login
+GET  /api/admin/summary           # Dashboard statistics
+GET  /api/admin/users             # All users management
+GET  /api/admin/bookings          # All bookings management
+GET  /api/admin/payment-reports   # Payment analytics
+POST /api/admin/manage-user       # Block/unblock users
+```
 
 ---
 
@@ -171,29 +207,210 @@ Supports both **Local** and **International** gateways:
 
 ### 1️⃣ Clone Repository
 ```bash
-git clone https://github.com/yourusername/lms-digital-platform.git
-cd lms-digital-platform
+git clone https://github.com/yourusername/bus-ticket-booking-system.git
+cd bus-ticket-booking-system
 ```
-##  2️⃣ Backend Setup
 
-cd backend
+### 2️⃣ Install Dependencies
+```bash
 npm install
+```
+
+### 3️⃣ Environment Setup
+```bash
 cp .env.example .env
+```
+
+### 4️⃣ Environment Variables
+```env
+# Server Configuration
+PORT=3000
+NODE_ENV=development
+DB_URL=your_mongodb_connection_string
+
+# JWT Security
+JWT_ACCESS_SECRET=your_jwt_access_secret
+JWT_ACCESS_EXPIRES=15m
+JWT_REFRESH_SECRET=your_jwt_refresh_secret
+JWT_REFRESH_EXPIRES=7d
+
+# SSLCommerz Payment Gateway
+STORE_ID=your_sslcommerz_store_id
+STORE_PASS=your_sslcommerz_store_password
+SSL_PAYMENT_API=https://sandbox.sslcommerz.com/gwprocess/v3/api.php
+SSL_VALIDATION_API=https://sandbox.sslcommerz.com/validator/api/validationserverAPI.php
+
+# Frontend URLs
+SSL_SUCCESS_FRONTEND_URL=http://localhost:3000/payment-success
+SSL_FAIL_FRONTEND_URL=http://localhost:3000/payment-failed
+SSL_CANCEL_FRONTEND_URL=http://localhost:3000/payment-cancel
+```
+
+### 5️⃣ Run Development Server
+```bash
 npm run dev
+```
 
-## 3️⃣ Environment Variables
+### 6️⃣ Build for Production
+```bash
+npm run build
+npm start
+```
 
-PORT=5000
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_secret
-CLOUDINARY_URL=your_cloudinary_url
-AWS_ACCESS_KEY=your_aws_key
-AWS_SECRET_KEY=your_aws_secret
-STRIPE_SECRET_KEY=your_stripe_secret
-PAYPAL_CLIENT_ID=your_paypal_client_id
+---
 
-## 👨‍💻 Author
+## 🔐 Security Features
 
-Developed by: [Alok Roy]
-📧 Email: [alokroy602701@gmail.com]
-🌐 Website: https://alok-roy-dev.vercel.app
+- **JWT Authentication** with access and refresh tokens
+- **Password Encryption** using bcrypt
+- **Rate Limiting** to prevent abuse
+- **Input Validation** with Zod schemas
+- **CORS Protection** for cross-origin requests
+- **Security Headers** with Helmet middleware
+- **Request Logging** for monitoring
+- **Environment Variables** for sensitive data
+
+---
+
+## 📊 Database Schema
+
+### User Collection
+```javascript
+{
+  name: String,
+  email: String (unique),
+  password: String (hashed),
+  phone: String,
+  role: Enum ['USER', 'ADMIN'],
+  isBlocked: Boolean,
+  refreshToken: String,
+  resetPasswordToken: String,
+  resetPasswordExpiry: Date
+}
+```
+
+### Bus Collection
+```javascript
+{
+  busName: String,
+  busNumber: String (unique),
+  capacity: Number,
+  busType: String,
+  amenities: [String],
+  isActive: Boolean
+}
+```
+
+### Route Collection
+```javascript
+{
+  source: String,
+  destination: String,
+  distance: Number,
+  duration: Number,
+  baseFare: Number
+}
+```
+
+### Booking Collection
+```javascript
+{
+  user: ObjectId (ref: User),
+  bus: ObjectId (ref: Bus),
+  route: ObjectId (ref: Route),
+  seats: [String],
+  journeyDate: Date,
+  totalFare: Number,
+  status: Enum ['pending', 'confirmed', 'cancelled']
+}
+```
+
+### Payment Collection
+```javascript
+{
+  user: ObjectId (ref: User),
+  booking: ObjectId (ref: Booking),
+  amount: Number,
+  transactionId: String,
+  paymentMethod: String,
+  paymentStatus: Enum ['pending', 'success', 'failed', 'refunded'],
+  sslSessionId: String,
+  gatewayData: Object
+}
+```
+
+---
+
+## 🧪 Testing
+
+```bash
+# Run tests
+npm test
+
+# Run tests with coverage
+npm run test:coverage
+
+# Run tests in watch mode
+npm run test:watch
+```
+
+---
+
+## 📈 Performance & Monitoring
+
+- Database indexing for optimized queries
+- Request/Response logging
+- Error handling and logging
+- Performance monitoring
+- Memory usage optimization
+
+---
+
+## 🚀 Deployment
+
+### Production Checklist
+- [ ] Set NODE_ENV=production
+- [ ] Configure production database
+- [ ] Set up SSL certificates
+- [ ] Configure production payment gateway
+- [ ] Set up monitoring and logging
+- [ ] Configure backup strategies
+
+---
+
+## 👨💻 Author
+
+**Developed by:** [Alok Roy]  
+📧 **Email:** [alokroy602701@gmail.com]  
+🌐 **Website:** https://alok-roy-dev.vercel.app  
+💼 **LinkedIn:** [Your LinkedIn Profile]  
+🐙 **GitHub:** [Your GitHub Profile]
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📞 Support
+
+For support and queries:
+- 📧 Email: alokroy602701@gmail.com
+- 💬 Create an issue on GitHub
+- 📱 WhatsApp: [Your WhatsApp Number]
+
+---
+
+**⭐ If you find this project helpful, please give it a star!**
