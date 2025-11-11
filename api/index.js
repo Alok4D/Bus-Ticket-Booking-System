@@ -1,61 +1,54 @@
-module.exports = (req, res) => {
-  // Set CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+const express = require('express');
+const cors = require('cors');
 
-  // Handle preflight requests
-  if (req.method === 'OPTIONS') {
-    res.status(200).end();
-    return;
-  }
+const app = express();
 
-  try {
-    // Root route
-    if (req.url === '/' || req.url === '') {
-      res.status(200).json({
-        success: true,
-        message: 'Bus Ticket Booking System API is running! 🚌',
-        version: '1.0.0',
-        timestamp: new Date().toISOString(),
-        method: req.method,
-        url: req.url
-      });
-      return;
-    }
+// Middleware
+app.use(cors());
+app.use(express.json());
 
-    // Health check
-    if (req.url === '/health') {
-      res.status(200).json({
-        status: 'OK',
-        timestamp: new Date().toISOString()
-      });
-      return;
-    }
+// Routes
+app.get('/', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'Bus Ticket Booking System API is running! 🚌',
+    version: '1.0.0',
+    timestamp: new Date().toISOString()
+  });
+});
 
-    // API test
-    if (req.url === '/api/v1/test') {
-      res.status(200).json({
-        success: true,
-        message: 'API endpoint working',
-        data: null
-      });
-      return;
-    }
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'OK',
+    timestamp: new Date().toISOString()
+  });
+});
 
-    // 404 for other routes
-    res.status(404).json({
-      success: false,
-      message: 'Route not found',
-      path: req.url
-    });
+app.get('/api/v1/test', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'API endpoint working',
+    data: null
+  });
+});
 
-  } catch (error) {
-    console.error('Error:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Internal server error',
-      error: error.message
-    });
-  }
-};
+// 404 handler
+app.use('*', (req, res) => {
+  res.status(404).json({
+    success: false,
+    message: 'Route not found',
+    path: req.originalUrl
+  });
+});
+
+// Error handler
+app.use((err, req, res, next) => {
+  console.error('Error:', err);
+  res.status(500).json({
+    success: false,
+    message: 'Internal server error',
+    error: err.message
+  });
+});
+
+module.exports = app;
