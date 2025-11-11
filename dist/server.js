@@ -19,11 +19,18 @@ const envVars_1 = require("./app/config/envVars");
 const mongoose_1 = __importDefault(require("mongoose"));
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
-        yield mongoose_1.default.connect(envVars_1.envVars.DB_URL);
-        console.log("✅ MongoDB connected successfully!");
+        try {
+            yield mongoose_1.default.connect(envVars_1.envVars.DB_URL);
+            console.log("✅ MongoDB connected successfully!");
+            const port = envVars_1.envVars.PORT || 3000;
+            app_1.app.listen(port, () => {
+                console.log(`🚀 Server running on port ${port}`);
+            });
+        }
+        catch (error) {
+            console.error("❌ Server startup error:", error);
+            process.exit(1);
+        }
     });
 }
-main().catch((err) => console.error("❌ MongoDB connection error:", err));
-app_1.app.listen(envVars_1.envVars.PORT, () => {
-    console.log(`🚀 Server running on port ${envVars_1.envVars.PORT}`);
-});
+main();
