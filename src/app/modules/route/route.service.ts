@@ -1,10 +1,33 @@
 import { Route } from "./route.model";
 import { Types } from "mongoose";
 
-const createRoute = async (payload: { origin: string; destination: string; distance: number }) => {
-  const route = await Route.create(payload);
+const createRoute = async (payload: { origin?: string; destination?: string; distance?: number }) => {
+  // ✅ Step 1: Basic validation check
+  if (!payload.origin || !payload.destination) {
+    throw new Error("Origin and Destination are required");
+  }
+
+  // ✅ Step 2: Convert to lowercase safely
+  const origin = payload.origin.toLowerCase().trim();
+  const destination = payload.destination.toLowerCase().trim();
+
+  // ✅ Step 3: Check if route already exists
+  const existingRoute = await Route.findOne({ origin, destination });
+
+  if (existingRoute) {
+    throw new Error(`Route from ${payload.origin} to ${payload.destination} already exists`);
+  }
+
+  // ✅ Step 4: Create new route
+  const route = await Route.create({
+    origin,
+    destination,
+    distance: payload.distance,
+  });
+
   return route;
 };
+
 
 const getAllRoutes = async () => {
   const routes = await Route.find({});

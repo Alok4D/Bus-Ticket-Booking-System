@@ -9,16 +9,21 @@ import sendResponse from "../../utlis/sendResponse";
  * POST /api/v1/routes
  * Admin only
  */
-const createRoute = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-  const payload = req.body;
+const createRoute = catchAsync(async (req, res) => {
+  // ✅ Fix: যদি validateRequest middleware এ schema তে "body" আছে
+  // তাহলে req.body.body থেকে data নিতে হবে
+  const payload = req.body.body;
+
   const route = await RouteService.createRoute(payload);
+
   sendResponse(res, {
-    statusCode: httpStatus.CREATED,
+    statusCode: 201,
     success: true,
     message: "Route created successfully",
     data: route,
   });
 });
+
 
 /**
  * GET /api/v1/routes

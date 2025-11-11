@@ -4,7 +4,8 @@ import jwt from "jsonwebtoken";
 import { NextFunction, Request, Response } from "express";
 import { User } from "../modules/user/user.model";
 
-export const checkAuth = (...authRoles: string[]) =>
+export const checkAuth =
+  (...authRoles: string[]) =>
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const authHeader = req.headers.authorization;
@@ -16,7 +17,7 @@ export const checkAuth = (...authRoles: string[]) =>
       }
 
       const token = authHeader.split(" ")[1];
-      // console.log("token", token);
+      console.log("token", token);
 
       const verifiedToken = jwt.verify(
         token,
@@ -24,7 +25,9 @@ export const checkAuth = (...authRoles: string[]) =>
       ) as JwtPayload;
       console.log(verifiedToken);
 
-      const isUserExist = await User.findOne({ email: verifiedToken.email });
+     const isUserExist = await User.findById(verifiedToken.userId);
+
+      console.log("user", isUserExist);
       if (!isUserExist) {
         return res
           .status(401)

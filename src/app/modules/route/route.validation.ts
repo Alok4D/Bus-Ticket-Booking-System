@@ -1,9 +1,11 @@
 import { z } from "zod";
 
 export const createRouteSchema = z.object({
-     origin: z.string().min(2, "Origin must be at least 2 characters"),
-    destination: z.string().min(2, "Destination must be at least 2 characters"),
-    distance: z.number().nonnegative("Distance must be non-negative"),
+  body: z.object({
+    origin: z.string().min(2, "Origin must be at least 2 characters").trim(),
+    destination: z.string().min(2, "Destination must be at least 2 characters").trim(),
+    distance: z.number().positive("Distance must be positive"),
+  })
 });
 
 export const updateRouteSchema = z.object({

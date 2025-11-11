@@ -1,7 +1,12 @@
 import { Router } from "express";
 import { RouteController } from "./route.controller";
 
-import { createRouteSchema, updateRouteSchema, getRouteSchema, deleteRouteSchema } from "./route.validation";
+import {
+  createRouteSchema,
+  updateRouteSchema,
+  getRouteSchema,
+  deleteRouteSchema,
+} from "./route.validation";
 
 import { Role } from "../user/user.interface";
 import { checkAuth } from "../../middleware/checkAuth";
@@ -20,34 +25,28 @@ const router = Router();
  *   DELETE /api/v1/routes/:id
  */
 
-// create route (admin)
+// Public routes
+router.get("/", RouteController.getAllRoutes);
+router.get("/:id",  RouteController.getSingleRoute);
+
+// Admin only routes
 router.post(
   "/create-route",
-  // checkAuth(Role.ADMIN),
-   validateRequest(createRouteSchema),
- // cast if your validateRequest expects ZodObject<any, any>
+  checkAuth(Role.ADMIN),
+  validateRequest(createRouteSchema),
   RouteController.createRoute
 );
 
-// get all routes (public)
-router.get("/", RouteController.getAllRoutes);
-
-// get single route (public)
-router.get("/routes/:id",  RouteController.getSingleRoute);
-
-// update route (admin)
 router.put(
-  "/routes/:id",
+  "/:id",
   checkAuth(Role.ADMIN),
-  validateRequest(updateRouteSchema as any),
+  validateRequest(updateRouteSchema),
   RouteController.updateRoute
 );
 
-// delete route (admin)
 router.delete(
-  "/routes/:id",
+  "/:id",
   checkAuth(Role.ADMIN),
-  validateRequest(deleteRouteSchema as any),
   RouteController.deleteRoute
 );
 
