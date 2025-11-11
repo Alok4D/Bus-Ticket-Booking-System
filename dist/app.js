@@ -14,8 +14,14 @@ const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const app = (0, express_1.default)();
 // middleware
 app.use((0, cookie_parser_1.default)());
-// TODO: when deploy frontend, it must be changed
-app.use(cors({ origin: ["http://localhost:3000"], credentials: true }));
+// CORS configuration for production
+const corsOptions = {
+    origin: process.env.NODE_ENV === 'production'
+        ? [process.env.FRONTEND_URL || 'https://your-frontend-domain.vercel.app']
+        : ["http://localhost:3000", "http://localhost:5173"],
+    credentials: true
+};
+app.use(cors(corsOptions));
 app.use(express_1.default.json());
 // API routes
 app.use("/api/v1", user_route_1.UserRoutes);

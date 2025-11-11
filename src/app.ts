@@ -11,8 +11,14 @@ const app: Application = express();
 
 // middleware
 app.use(cookieParser());
-// TODO: when deploy frontend, it must be changed
-app.use(cors({ origin: ["http://localhost:3000"], credentials: true }));
+// CORS configuration for production
+const corsOptions = {
+  origin: process.env.NODE_ENV === 'production' 
+    ? [process.env.FRONTEND_URL || 'https://your-frontend-domain.vercel.app']
+    : ["http://localhost:3000", "http://localhost:5173"],
+  credentials: true
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // API routes

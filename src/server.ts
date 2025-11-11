@@ -2,26 +2,40 @@ import app from "./app";
 import { envVars } from "./app/config/envVars";
 import mongoose from "mongoose";
 
-// async function main() {
-//   await mongoose.connect(envVars.DB_URL);
-//   console.log("✅ MongoDB connected successfully!");
-// }
+let isConnected = false;
 
-// main().catch((err) => console.error("❌ MongoDB connection error:", err));
-
-// app.listen(envVars.PORT, () => {
-//   console.log(`🚀 Server running on port ${envVars.PORT}`);
-// });
-
-async function main() {
+async function connectDB() {
+  if (isConnected) return;
+  
   try {
-    await mongoose.connect(envVars.DB_URL as string);
-    app.listen(envVars.PORT, () => {
-      console.log(`🚀 Online course is running on port: ${envVars.PORT}`);
-    });
+    if (envVars.DB_URL) {
+      await mongoose.connect(envVars.DB_URL);
+      isConnected = true;
+      console.log("✅ MongoDB connected successfully!");
+    }
   } catch (err) {
-    console.log(err);
+    console.error("❌ MongoDB connection error:", err);
   }
 }
 
-main();
+// For Vercel serverless
+if (process.env.VERCEL) {
+  connectDB();
+  module.exports = app;
+} else {
+  // For local development
+  async function main() {
+    try {
+      await connectDB();
+      const port = envVars.PORT || 3000;
+      app.listen(port, () => {
+        console.log(`🚀 Bus Ticket Booking System running on port: ${port}`);
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  main();
+}
+
+export default app;

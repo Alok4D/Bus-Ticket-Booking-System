@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
@@ -13,14 +14,16 @@ app.get('/', (req, res) => {
     success: true,
     message: 'Bus Ticket Booking System API is running! 🚌',
     version: '1.0.0',
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
+    port: PORT
   });
 });
 
 app.get('/health', (req, res) => {
   res.status(200).json({
     status: 'OK',
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime()
   });
 });
 
@@ -49,6 +52,11 @@ app.use((err, req, res, next) => {
     message: 'Internal server error',
     error: err.message
   });
+});
+
+// Start server
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
 });
 
 module.exports = app;

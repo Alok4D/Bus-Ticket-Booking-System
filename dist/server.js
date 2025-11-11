@@ -15,25 +15,44 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const app_1 = __importDefault(require("./app"));
 const envVars_1 = require("./app/config/envVars");
 const mongoose_1 = __importDefault(require("mongoose"));
-// async function main() {
-//   await mongoose.connect(envVars.DB_URL);
-//   console.log("✅ MongoDB connected successfully!");
-// }
-// main().catch((err) => console.error("❌ MongoDB connection error:", err));
-// app.listen(envVars.PORT, () => {
-//   console.log(`🚀 Server running on port ${envVars.PORT}`);
-// });
-function main() {
+let isConnected = false;
+function connectDB() {
     return __awaiter(this, void 0, void 0, function* () {
+        if (isConnected)
+            return;
         try {
-            yield mongoose_1.default.connect(envVars_1.envVars.DB_URL);
-            app_1.default.listen(envVars_1.envVars.PORT, () => {
-                console.log(`🚀 Online course is running on port: ${envVars_1.envVars.PORT}`);
-            });
+            if (envVars_1.envVars.DB_URL) {
+                yield mongoose_1.default.connect(envVars_1.envVars.DB_URL);
+                isConnected = true;
+                console.log("✅ MongoDB connected successfully!");
+            }
         }
         catch (err) {
-            console.log(err);
+            console.error("❌ MongoDB connection error:", err);
         }
     });
 }
-main();
+// For Vercel serverless
+if (process.env.VERCEL) {
+    connectDB();
+    module.exports = app_1.default;
+}
+else {
+    // For local development
+    function main() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                yield connectDB();
+                const port = envVars_1.envVars.PORT || 3000;
+                app_1.default.listen(port, () => {
+                    console.log(`🚀 Bus Ticket Booking System running on port: ${port}`);
+                });
+            }
+            catch (err) {
+                console.log(err);
+            }
+        });
+    }
+    main();
+}
+exports.default = app_1.default;
