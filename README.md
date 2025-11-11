@@ -2,7 +2,7 @@
 
 ### 🎫 Complete Bus Reservation & Payment Management System
 
-**🌐 LIVE API:** https://bus-ticket-booking-system-virid.vercel.app
+**🌐 LIVE API:** https://bus-ticket-booking-server-gules.vercel.app/
 
 A full-featured **Bus Ticket Booking System** with secure payment integration, user management, and admin dashboard for managing bus operations.
 
@@ -399,7 +399,7 @@ npm run test:watch
 
 ### ✅ Live Deployment Status
 - ✅ **Deployed on:** Vercel
-- ✅ **Live URL:** https://bus-ticket-booking-system-virid.vercel.app
+- ✅ **Live URL:** https://bus-ticket-booking-server-gules.vercel.app/
 - ✅ **Environment:** Production
 - ✅ **Database:** MongoDB Atlas (Connected)
 - ✅ **SSL:** Enabled (Vercel Auto-SSL)
