@@ -23,14 +23,10 @@ export const csrfProtection = (req: Request, res: Response, next: NextFunction) 
 
 // Generate CSRF token
 export const generateCSRFToken = (req: Request, res: Response, next: NextFunction) => {
-  if (!req.session) {
-    req.session = {};
+  if (!req.session?.csrfToken) {
+    req.session!.csrfToken = crypto.randomBytes(32).toString('hex');
   }
   
-  if (!req.session.csrfToken) {
-    req.session.csrfToken = crypto.randomBytes(32).toString('hex');
-  }
-  
-  res.locals.csrfToken = req.session.csrfToken;
+  res.locals.csrfToken = req.session!.csrfToken;
   next();
 };

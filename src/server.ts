@@ -1,21 +1,26 @@
-import dotenv from "dotenv";
-dotenv.config();
-import { app } from "./app";
+import app from "./app";
 import { envVars } from "./app/config/envVars";
 import mongoose from "mongoose";
 
+// async function main() {
+//   await mongoose.connect(envVars.DB_URL);
+//   console.log("✅ MongoDB connected successfully!");
+// }
+
+// main().catch((err) => console.error("❌ MongoDB connection error:", err));
+
+// app.listen(envVars.PORT, () => {
+//   console.log(`🚀 Server running on port ${envVars.PORT}`);
+// });
+
 async function main() {
   try {
-    await mongoose.connect(envVars.DB_URL);
-    console.log("✅ MongoDB connected successfully!");
-
-    const port = envVars.PORT || 3000;
-    app.listen(port, () => {
-      console.log(`🚀 Server running on port ${port}`);
+    await mongoose.connect(envVars.DB_URL as string);
+    app.listen(envVars.PORT, () => {
+      console.log(`🚀 Online course is running on port: ${envVars.PORT}`);
     });
-  } catch (error) {
-    console.error("❌ Server startup error:", error);
-    process.exit(1);
+  } catch (err) {
+    console.log(err);
   }
 }
 
