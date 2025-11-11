@@ -44,7 +44,7 @@ export const ForgotPasswordService = {
     user.password = hashedPassword;
     user.resetPasswordToken = undefined;
     user.resetPasswordExpiry = undefined;
-    user.refreshToken = null; // Logout from all devices
+    user.refreshToken = undefined; // Logout from all devices
     await user.save();
 
     return {

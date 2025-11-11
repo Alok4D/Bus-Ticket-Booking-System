@@ -21,4 +21,3 @@ exports.getBookingSchema = zod_1.z.object({
         id: zod_1.z.string().regex(/^[0-9a-fA-F]{24}$/, "Invalid Booking ID"),
     }),
 });
-//# sourceMappingURL=booking.validation.js.map

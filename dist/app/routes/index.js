@@ -7,6 +7,7 @@ const route_route_1 = require("../modules/route/route.route");
 const bus_route_1 = require("../modules/Bus/bus.route");
 const booking_route_1 = require("../modules/Booking/booking.route");
 const payment_route_1 = require("../modules/Payment/payment.route");
+const admin_routes_1 = require("../modules/Admin/admin.routes");
 const router = (0, express_1.Router)();
 const moduleRoutes = [
     {
@@ -33,7 +34,10 @@ const moduleRoutes = [
         path: "/payment",
         route: payment_route_1.PaymentRoutes,
     },
+    {
+        path: "/admin",
+        route: admin_routes_1.AdminRoutes,
+    },
 ];
 moduleRoutes.forEach((route) => router.use(route.path, route.route));
 exports.default = router;
-//# sourceMappingURL=index.js.map

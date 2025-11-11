@@ -1,0 +1,1 @@
+{"version":3,"file":"csrfProtection.d.ts","sourceRoot":"","sources":["../../../src/app/middleware/csrfProtection.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,QAAQ,EAAE,YAAY,EAAE,MAAM,SAAS,CAAC;AAI1D,eAAO,MAAM,cAAc,GAAI,KAAK,OAAO,EAAE,KAAK,QAAQ,EAAE,MAAM,YAAY,8CAiB7E,CAAC;AAGF,eAAO,MAAM,iBAAiB,GAAI,KAAK,OAAO,EAAE,KAAK,QAAQ,EAAE,MAAM,YAAY,SAOhF,CAAC"}

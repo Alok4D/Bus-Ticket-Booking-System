@@ -41,9 +41,9 @@ const refreshToken = catchAsync(async (req: Request, res: Response) => {
 });
 
 const logout = catchAsync(async (req: Request, res: Response) => {
-  const userId = req.user?.userId;
+  const userId = req.user?._id?.toString();
   
-  await AuthServices.logout(userId);
+  await AuthServices.logout(userId!);
   
   // Clear refresh token cookie
   res.clearCookie('refreshToken');
@@ -57,9 +57,9 @@ const logout = catchAsync(async (req: Request, res: Response) => {
 });
 
 const logoutAll = catchAsync(async (req: Request, res: Response) => {
-  const userId = req.user?.userId;
+  const userId = req.user?._id?.toString();
   
-  await AuthServices.logoutAll(userId);
+  await AuthServices.logoutAll(userId!);
   
   // Clear refresh token cookie
   res.clearCookie('refreshToken');

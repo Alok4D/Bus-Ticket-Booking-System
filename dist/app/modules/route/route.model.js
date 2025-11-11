@@ -11,4 +11,3 @@ const routeSchema = new mongoose_1.Schema({
     versionKey: false,
 });
 exports.Route = (0, mongoose_1.model)("Route", routeSchema);
-//# sourceMappingURL=route.model.js.map

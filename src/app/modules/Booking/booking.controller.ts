@@ -49,8 +49,8 @@ export const BookingController = {
   }),
 
  getUserBookings: catchAsync(async (req: Request, res: Response) => {
-  const userId = req.user?._id;
-  const bookings = await BookingService.getUserBookings(userId);
+  const userId = req.user?._id?.toString();
+  const bookings = await BookingService.getUserBookings(userId!);
 
   if (bookings.length === 0) {
     return sendResponse(res, {

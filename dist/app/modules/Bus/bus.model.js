@@ -21,4 +21,3 @@ const busSchema = new mongoose_1.default.Schema({
     arrivalTime: { type: String, required: true },
 }, { timestamps: true, versionKey: false });
 exports.BusModel = mongoose_1.default.model("Bus", busSchema);
-//# sourceMappingURL=bus.model.js.map

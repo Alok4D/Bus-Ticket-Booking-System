@@ -12,4 +12,3 @@ var Role;
     Role["ADMIN"] = "ADMIN";
     Role["USER"] = "USER";
 })(Role || (exports.Role = Role = {}));
-//# sourceMappingURL=user.interface.js.map

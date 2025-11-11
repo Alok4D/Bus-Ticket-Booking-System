@@ -3,9 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteRouteSchema = exports.getRouteSchema = exports.updateRouteSchema = exports.createRouteSchema = void 0;
 const zod_1 = require("zod");
 exports.createRouteSchema = zod_1.z.object({
-    origin: zod_1.z.string().min(2, "Origin must be at least 2 characters"),
-    destination: zod_1.z.string().min(2, "Destination must be at least 2 characters"),
-    distance: zod_1.z.number().nonnegative("Distance must be non-negative"),
+    body: zod_1.z.object({
+        origin: zod_1.z.string().min(2, "Origin must be at least 2 characters").trim(),
+        destination: zod_1.z.string().min(2, "Destination must be at least 2 characters").trim(),
+        distance: zod_1.z.number().positive("Distance must be positive"),
+    })
 });
 exports.updateRouteSchema = zod_1.z.object({
     body: zod_1.z.object({
@@ -23,4 +25,3 @@ exports.getRouteSchema = zod_1.z.object({
     }),
 });
 exports.deleteRouteSchema = exports.getRouteSchema;
-//# sourceMappingURL=route.validation.js.map

@@ -1,13 +1,19 @@
 import { Types } from "mongoose";
-export type TPayment = {
-    _id?: Types.ObjectId;
+export declare enum PAYMENT_STATUS {
+    PENDING = "pending",
+    SUCCESS = "success",
+    FAILED = "failed",
+    REFUNDED = "refunded"
+}
+export interface IPayment {
     user: Types.ObjectId;
     booking: Types.ObjectId;
-    amount: number;
     transactionId: string;
-    paymentMethod: "stripe" | "cash";
-    paymentStatus: "pending" | "success" | "failed" | "refunded";
+    amount: number;
+    paymentMethod: "sslcommerz" | "cash";
+    paymentStatus: PAYMENT_STATUS;
+    sslSessionId?: string;
+    gatewayData?: any;
     paymentDate?: Date;
-    stripeSessionId?: string;
-};
+}
 //# sourceMappingURL=payment.interface.d.ts.map

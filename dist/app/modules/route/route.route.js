@@ -21,19 +21,11 @@ const router = (0, express_1.Router)();
  *   PUT /api/v1/routes/:id
  *   DELETE /api/v1/routes/:id
  */
-// create route (admin)
-router.post("/create-route", 
-// checkAuth(Role.ADMIN),
-(0, validateRequest_1.default)(route_validation_1.createRouteSchema), 
-// cast if your validateRequest expects ZodObject<any, any>
-route_controller_1.RouteController.createRoute);
-// get all routes (public)
+// Public routes
 router.get("/", route_controller_1.RouteController.getAllRoutes);
-// get single route (public)
-router.get("/routes/:id", route_controller_1.RouteController.getSingleRoute);
-// update route (admin)
-router.put("/routes/:id", (0, checkAuth_1.checkAuth)(user_interface_1.Role.ADMIN), (0, validateRequest_1.default)(route_validation_1.updateRouteSchema), route_controller_1.RouteController.updateRoute);
-// delete route (admin)
-router.delete("/routes/:id", (0, checkAuth_1.checkAuth)(user_interface_1.Role.ADMIN), (0, validateRequest_1.default)(route_validation_1.deleteRouteSchema), route_controller_1.RouteController.deleteRoute);
+router.get("/:id", route_controller_1.RouteController.getSingleRoute);
+// Admin only routes
+router.post("/create-route", (0, checkAuth_1.checkAuth)(user_interface_1.Role.ADMIN), (0, validateRequest_1.default)(route_validation_1.createRouteSchema), route_controller_1.RouteController.createRoute);
+router.put("/:id", (0, checkAuth_1.checkAuth)(user_interface_1.Role.ADMIN), (0, validateRequest_1.default)(route_validation_1.updateRouteSchema), route_controller_1.RouteController.updateRoute);
+router.delete("/:id", (0, checkAuth_1.checkAuth)(user_interface_1.Role.ADMIN), route_controller_1.RouteController.deleteRoute);
 exports.RouteRoutes = router;
-//# sourceMappingURL=route.route.js.map

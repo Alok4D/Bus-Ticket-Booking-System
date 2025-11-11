@@ -28,4 +28,3 @@ exports.app.get("/", (req, res) => {
 exports.app.use(globalErrorHandler_1.default);
 // not found handler
 exports.app.use(notFound_1.default);
-//# sourceMappingURL=app.js.map

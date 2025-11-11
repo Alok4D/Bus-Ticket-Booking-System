@@ -19,12 +19,6 @@ const globalErrorHandler = (err, req, res, next) => {
             .map((el) => el.message)
             .join(', ');
     }
-    return res.status(statusCode).json({
-        success: false,
-        message,
-        error: simplifiedError,
-        ...(stack && { stack }),
-    });
+    return res.status(statusCode).json(Object.assign({ success: false, message, error: simplifiedError }, (stack && { stack })));
 };
 exports.default = globalErrorHandler;
-//# sourceMappingURL=globalErrorHandler.js.map

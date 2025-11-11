@@ -19,6 +19,10 @@ export interface IUser {
     isDeleted?: boolean;
     isActive?: IsActive;
     isVerified?: boolean;
+    isBlocked?: boolean;
     role: Role;
+    refreshToken?: string;
+    resetPasswordToken?: string;
+    resetPasswordExpiry?: Date;
 }
 //# sourceMappingURL=user.interface.d.ts.map

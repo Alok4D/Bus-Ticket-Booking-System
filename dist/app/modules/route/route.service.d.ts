@@ -1,9 +1,9 @@
 import { Types } from "mongoose";
 export declare const RouteService: {
     createRoute: (payload: {
-        origin: string;
-        destination: string;
-        distance: number;
+        origin?: string;
+        destination?: string;
+        distance?: number;
     }) => Promise<import("mongoose").Document<unknown, {}, import("./route.interface").IRoute, {}, {}> & import("./route.interface").IRoute & Required<{
         _id: Types.ObjectId;
     }> & {

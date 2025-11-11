@@ -13,4 +13,3 @@ const sendResponse = (res, data) => {
     });
 };
 exports.default = sendResponse;
-//# sourceMappingURL=sendResponse.js.map

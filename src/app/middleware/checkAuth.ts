@@ -50,7 +50,7 @@ export const checkAuth =
         });
       }
 
-      req.user = isUserExist;
+      req.user = isUserExist as any;
       next();
     } catch (error: any) {
       console.error("Auth error:", error.message);

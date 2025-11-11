@@ -57,7 +57,7 @@ const sslPaymentInit = async (payload: ISSLCommerz) => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
         // console.log("Payment Error Occured", error);
-        throw new Error(httpStatus.BAD_REQUEST, error.message)
+        throw new Error(`Payment Error: ${error.message}`)
     }
 }
 
@@ -66,18 +66,19 @@ const validatePayment = async (payload: any) => {
     try {
         const response = await axios({
             method: "GET",
-            url: `${envVars.SSL_VALIDATION_API}?val_id=${payload.val_id}&store_id=${envVars.STORE_ID}&store_passwd=${envVars.SSL.STORE_PASS}`
+            url: `${envVars.SSL_VALIDATION_API}?val_id=${payload.val_id}&store_id=${envVars.STORE_ID}&store_passwd=${envVars.STORE_PASS}`
         })
 
         console.log("sslcomeerz validate api response", response.data);
 
-        await Payment.updateOne(
-            { transactionId: payload.tran_id },
-            { paymentGatewayData: response.data },
-            { runValidators: true })
+        // await Payment.updateOne(
+        //     { transactionId: payload.tran_id },
+        //     { paymentGatewayData: response.data },
+        //     { runValidators: true }
+        // )
     } catch (error: any) {
         console.log(error);
-        throw new Error(401, `Payment Validation Error, ${error.message}`)
+        throw new Error(`Payment Validation Error: ${error.message}`)
     }
 }
 

@@ -1,8 +1,10 @@
 import { z } from "zod";
 export declare const createRouteSchema: z.ZodObject<{
-    origin: z.ZodString;
-    destination: z.ZodString;
-    distance: z.ZodNumber;
+    body: z.ZodObject<{
+        origin: z.ZodString;
+        destination: z.ZodString;
+        distance: z.ZodNumber;
+    }, z.core.$strip>;
 }, z.core.$strip>;
 export declare const updateRouteSchema: z.ZodObject<{
     body: z.ZodObject<{
