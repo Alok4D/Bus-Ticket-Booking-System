@@ -15,12 +15,26 @@ app.get('/', (req, res) => {
     success: true,
     message: 'Bus Ticket Booking System API is running! 🚌',
     version: '1.0.0',
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || 'development'
   });
 });
 
 app.get('/health', (req, res) => {
-  res.json({ status: 'OK', timestamp: new Date().toISOString() });
+  res.json({ 
+    status: 'OK', 
+    timestamp: new Date().toISOString(),
+    database: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected'
+  });
+});
+
+// API routes placeholder
+app.get('/api/v1/test', (req, res) => {
+  res.json({
+    success: true,
+    message: 'API endpoint working',
+    data: null
+  });
 });
 
 // Connect to MongoDB
