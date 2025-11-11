@@ -1,3 +1,5 @@
 node_modules
 .env
 .vercel
+# dist folder should be committed for Vercel deployment
+# dist/
