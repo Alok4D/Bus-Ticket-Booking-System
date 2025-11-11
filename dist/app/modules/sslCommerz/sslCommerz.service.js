@@ -1,14 +1,4 @@
 "use strict";
-/* eslint-disable @typescript-eslint/no-explicit-any */
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -17,8 +7,7 @@ exports.SSLService = void 0;
 const envVars_1 = require("../../config/envVars");
 const axios_1 = __importDefault(require("axios"));
 const mongoose_1 = require("mongoose");
-const sslPaymentInit = (payload) => __awaiter(void 0, void 0, void 0, function* () {
-    // console.log(payload);
+const sslPaymentInit = async (payload) => {
     try {
         const data = {
             store_id: envVars_1.envVars.STORE_ID,
@@ -52,38 +41,31 @@ const sslPaymentInit = (payload) => __awaiter(void 0, void 0, void 0, function* 
             ship_postcode: 1000,
             ship_country: "N/A",
         };
-        const response = yield (0, axios_1.default)({
+        const response = await (0, axios_1.default)({
             method: "POST",
             url: envVars_1.envVars.SSL_PAYMENT_API,
             data: data,
             headers: { "Content-Type": "application/x-www-form-urlencoded" }
         });
         return response.data;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
     }
     catch (error) {
-        // console.log("Payment Error Occured", error);
         throw new mongoose_1.Error(`Payment Error: ${error.message}`);
     }
-});
-const validatePayment = (payload) => __awaiter(void 0, void 0, void 0, function* () {
+};
+const validatePayment = async (payload) => {
     try {
-        const response = yield (0, axios_1.default)({
+        const response = await (0, axios_1.default)({
             method: "GET",
             url: `${envVars_1.envVars.SSL_VALIDATION_API}?val_id=${payload.val_id}&store_id=${envVars_1.envVars.STORE_ID}&store_passwd=${envVars_1.envVars.STORE_PASS}`
         });
         console.log("sslcomeerz validate api response", response.data);
-        // await Payment.updateOne(
-        //     { transactionId: payload.tran_id },
-        //     { paymentGatewayData: response.data },
-        //     { runValidators: true }
-        // )
     }
     catch (error) {
         console.log(error);
         throw new mongoose_1.Error(`Payment Validation Error: ${error.message}`);
     }
-});
+};
 exports.SSLService = {
     sslPaymentInit,
     validatePayment
