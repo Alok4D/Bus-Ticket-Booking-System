@@ -1,53 +1,20 @@
 {
-  "name": "backend",
+  "name": "bus-ticket-booking-system",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Bus Ticket Booking System API",
+  "main": "api/index.js",
   "scripts": {
-    "build": "tsc",
-    "start": "node index.js",
-    "dev": "ts-node-dev --respawn --transpile-only ./src/server.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vercel dev",
+    "build": "echo 'No build needed'",
+    "start": "node api/index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
-    "axios": "^1.13.2",
-    "bcrypt": "^6.0.0",
-    "cloudinary": "^2.8.0",
-    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
-    "dotenv": "^17.2.3",
-    "express": "^5.1.0",
-    "express-async-handler": "^1.2.0",
-    "http-status-codes": "^2.3.0",
-    "jsonwebtoken": "^9.0.2",
-    "mongodb": "^6.20.0",
-    "mongoose": "^8.19.3",
-    "nodemailer": "^7.0.10",
-    "pdfkit": "^0.17.2",
-    "qs": "^6.14.0",
-    "sslcommerz-lts": "^1.2.0",
-    "uuid": "^13.0.0",
-    "zod": "^4.1.12"
+    "express": "^4.18.2",
+    "mongoose": "^7.5.0",
+    "dotenv": "^16.3.1"
   },
-  "devDependencies": {
-    "@types/bcrypt": "^6.0.0",
-    "@types/cookie-parser": "^1.4.10",
-    "@types/cors": "^2.8.19",
-    "@types/dotenv": "^6.1.1",
-    "@types/express": "^5.0.5",
-    "@types/http-status-codes": "^1.2.0",
-    "@types/jsonwebtoken": "^9.0.10",
-    "@types/mongoose": "^5.11.96",
-    "@types/node": "^24.5.2",
-    "@types/pdfkit": "^0.17.3",
-    "@types/uuid": "^10.0.0",
-    "eslint": "^9.39.1",
-    "ts-node": "^10.9.2",
-    "ts-node-dev": "^2.0.0",
-    "typescript": "^5.9.3"
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
