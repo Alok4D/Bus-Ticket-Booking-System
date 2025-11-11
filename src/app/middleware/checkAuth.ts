@@ -17,38 +17,60 @@ export const checkAuth =
       }
 
       const token = authHeader.split(" ")[1];
-      console.log("token", token);
+      console.log("Received token:", token);
 
       const verifiedToken = jwt.verify(
         token,
         envVars.JWT_ACCESS_SECRET
       ) as JwtPayload;
-      console.log(verifiedToken);
+      console.log("Verified token:", verifiedToken);
 
-     const isUserExist = await User.findById(verifiedToken.userId);
-
-      console.log("user", isUserExist);
+      const isUserExist = await User.findById(verifiedToken.userId);
+      console.log("User found:", isUserExist?.email, "Role:", isUserExist?.role);
+      
       if (!isUserExist) {
         return res
           .status(401)
           .json({ success: false, message: "User does not exist" });
       }
 
+      if (isUserExist.isBlocked) {
+        return res
+          .status(403)
+          .json({ success: false, message: "Account is blocked" });
+      }
+
+      console.log("Required roles:", authRoles);
+      console.log("User role:", verifiedToken.role);
+      
       if (!authRoles.includes(verifiedToken.role)) {
         return res.status(403).json({
           success: false,
-          message: "You are not permitted to view this route",
+          message: "You are not permitted to access this route",
         });
       }
 
       req.user = isUserExist;
-
-      console.log(req.user);
       next();
     } catch (error: any) {
-      console.error(error);
+      console.error("Auth error:", error.message);
+      
+      if (error.name === 'TokenExpiredError') {
+        return res.status(401).json({ 
+          success: false, 
+          message: "Token has expired. Please login again" 
+        });
+      }
+      
+      if (error.name === 'JsonWebTokenError') {
+        return res.status(401).json({ 
+          success: false, 
+          message: "Invalid token format" 
+        });
+      }
+      
       return res
         .status(401)
-        .json({ success: false, message: "Invalid or expired token" });
+        .json({ success: false, message: "Authentication failed" });
     }
   };

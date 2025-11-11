@@ -1,29 +1,29 @@
 import { z } from "zod";
 
 export const createBusSchema = z.object({
-  
-    busName: z.string().min(2),
-    busNumber: z.string().min(2),
-    route: z.string().min(1),
-    totalSeats: z.number().int().positive(),
-    availableSeats: z.number().int().nonnegative(),
-    fare: z.number().positive(),
-    departureTime: z.string().min(1),
-    arrivalTime: z.string().min(1),
- 
+  body: z.object({
+    busName: z.string().min(2, "Bus name must be at least 2 characters").trim(),
+    busNumber: z.string().min(2, "Bus number must be at least 2 characters").trim(),
+    route: z.string().min(1, "Route ID is required"),
+    totalSeats: z.number().int().positive("Total seats must be positive"),
+    availableSeats: z.number().int().nonnegative("Available seats cannot be negative"),
+    fare: z.number().positive("Fare must be positive"),
+    departureTime: z.string().min(1, "Departure time is required"),
+    arrivalTime: z.string().min(1, "Arrival time is required"),
+  })
 });
 
 export const updateBusSchema = z.object({
- 
-    busName: z.string().min(2).optional(),
-    busNumber: z.string().min(2).optional(),
+  body: z.object({
+    busName: z.string().min(2).trim().optional(),
+    busNumber: z.string().min(2).trim().optional(),
     route: z.string().optional(),
     totalSeats: z.number().int().positive().optional(),
     availableSeats: z.number().int().nonnegative().optional(),
     fare: z.number().positive().optional(),
     departureTime: z.string().optional(),
     arrivalTime: z.string().optional(),
-
+  }),
   params: z.object({
     id: z.string().min(1),
   }),

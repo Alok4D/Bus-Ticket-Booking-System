@@ -6,8 +6,8 @@ import { StatusCodes } from "http-status-codes";
 
 
 const createBus = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-  const bus = await BusService.createBus(req.body);
-  sendResponse(res, { statusCode: StatusCodes.CREATED, success: true, message: "Bus created", data: bus });
+  const bus = await BusService.createBus(req.body.body);
+  sendResponse(res, { statusCode: StatusCodes.CREATED, success: true, message: "Bus created successfully", data: bus });
 });
 
 const getAllBuses = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
@@ -21,7 +21,7 @@ const getSingleBus = catchAsync(async (req: Request, res: Response, next: NextFu
 });
 
 const updateBus = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-  const bus = await BusService.updateBus(req.params.id, req.body);
+  const bus = await BusService.updateBus(req.params.id, req.body.body || req.body);
   sendResponse(res, { statusCode: StatusCodes.OK, success: true, message: "Bus updated", data: bus });
 });
 

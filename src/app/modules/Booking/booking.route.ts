@@ -26,7 +26,7 @@ router.get(
 
 router.get(
   "/",
-  // checkAuth(Role.ADMIN),
+  checkAuth(Role.ADMIN),
   BookingController.getAllBookings
 );
 
