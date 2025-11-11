@@ -2,11 +2,13 @@
 
 ### 🎫 Complete Bus Reservation & Payment Management System
 
+**🌐 LIVE API:** https://bus-ticket-booking-system-virid.vercel.app
+
 A full-featured **Bus Ticket Booking System** with secure payment integration, user management, and admin dashboard for managing bus operations.
 
 ---
 
-## 🚀 Project Overview
+## 🚀 Project Status: ✅ DEPLOYED & LIVE
 
 This project is a **complete bus ticket booking platform** where:
 
@@ -16,6 +18,7 @@ This project is a **complete bus ticket booking platform** where:
 - **JWT-based authentication** with refresh token support
 - **Role-based access control** for users and admins
 - **Real-time booking** management and seat availability
+- **Deployed on Vercel** with serverless architecture
 
 ---
 
@@ -133,10 +136,21 @@ This project is a **complete bus ticket booking platform** where:
 | **Security**        | Bcrypt, Helmet, Rate Limiting                |
 | **Validation**      | Zod Schema Validation                         |
 | **Environment**     | dotenv Configuration                          |
+| **Deployment**      | Vercel Serverless Functions                  |
+| **CI/CD**           | Vercel Auto-Deploy from Git                  |
 
 ---
 
-## 📝 API Endpoints
+## 🌐 Live API Endpoints
+
+**Base URL:** https://bus-ticket-booking-system-virid.vercel.app
+
+### System Status
+```
+GET  /                            # API status
+GET  /health                      # Health check
+GET  /api/v1/test                 # API test endpoint
+```
 
 ### Authentication
 ```
@@ -343,6 +357,21 @@ npm start
 
 ## 🧪 Testing
 
+### 🌐 Live API Testing
+
+**Test the live API:**
+```bash
+# API Status
+curl https://bus-ticket-booking-system-virid.vercel.app/
+
+# Health Check
+curl https://bus-ticket-booking-system-virid.vercel.app/health
+
+# API Test Endpoint
+curl https://bus-ticket-booking-system-virid.vercel.app/api/v1/test
+```
+
+### Local Testing
 ```bash
 # Run tests
 npm test
@@ -368,13 +397,23 @@ npm run test:watch
 
 ## 🚀 Deployment
 
-### Production Checklist
-- [ ] Set NODE_ENV=production
-- [ ] Configure production database
-- [ ] Set up SSL certificates
-- [ ] Configure production payment gateway
-- [ ] Set up monitoring and logging
-- [ ] Configure backup strategies
+### ✅ Live Deployment Status
+- ✅ **Deployed on:** Vercel
+- ✅ **Live URL:** https://bus-ticket-booking-system-virid.vercel.app
+- ✅ **Environment:** Production
+- ✅ **Database:** MongoDB Atlas (Connected)
+- ✅ **SSL:** Enabled (Vercel Auto-SSL)
+- ✅ **Payment Gateway:** SSLCommerz Sandbox
+- ✅ **Auto-Deploy:** GitHub Integration
+
+### Quick Deploy Commands
+```bash
+# Deploy to Vercel
+vercel --prod
+
+# Or push to GitHub (auto-deploy)
+git push origin main
+```
 
 ---
 
@@ -410,6 +449,36 @@ For support and queries:
 - 📧 Email: alokroy602701@gmail.com
 - 💬 Create an issue on GitHub
 - 📱 WhatsApp: [Your WhatsApp Number]
+
+---
+
+## 📁 Project Structure
+
+```
+Bus-Ticket-Booking-System/
+├── api/
+│   └── index.ts              # Vercel serverless entry point
+├── src/
+│   ├── app/
+│   │   ├── auth/              # Authentication logic
+│   │   ├── config/            # Configuration files
+│   │   ├── middleware/        # Express middlewares
+│   │   └── modules/           # Feature modules
+│   ├── app.ts              # Express app setup
+│   └── server.ts           # Server configuration
+├── vercel.json             # Vercel deployment config
+├── package.json            # Dependencies
+└── tsconfig.json           # TypeScript config
+```
+
+## 📊 Current Status
+
+- ✅ **Backend API:** Deployed & Running
+- ✅ **Database:** Connected (MongoDB Atlas)
+- ✅ **Authentication:** JWT Implementation Ready
+- ✅ **Payment Gateway:** SSLCommerz Integration Ready
+- ⚠️ **Frontend:** Not Connected (Next Phase)
+- ⚠️ **Full API Routes:** Partially Implemented
 
 ---
 

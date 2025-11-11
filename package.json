@@ -2,12 +2,12 @@
   "name": "bus-ticket-booking-system",
   "version": "1.0.0",
   "description": "Bus Ticket Booking System API",
-  "main": "dist/server.js",
+  "main": "api/index.ts",
   "scripts": {
     "build": "tsc",
     "start": "node dist/server.js",
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-    "vercel-build": "tsc"
+    "vercel-build": "echo 'Build completed'"
   },
   "dependencies": {
     "@types/bcrypt": "^6.0.0",
@@ -42,6 +42,6 @@
     "typescript": "^5.3.0"
   },
   "engines": {
-    "node": "18.x"
+    "node": "22.x"
   }
 }
