@@ -14,7 +14,6 @@ const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const app = (0, express_1.default)();
 // middleware
 app.use((0, cookie_parser_1.default)());
-// CORS configuration for production
 const corsOptions = {
     origin: process.env.NODE_ENV === 'production'
         ? [process.env.FRONTEND_URL || 'https://your-frontend-domain.vercel.app']

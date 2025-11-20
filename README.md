@@ -456,20 +456,106 @@ For support and queries:
 
 ```
 Bus-Ticket-Booking-System/
-├── api/
-│   └── index.ts              # Vercel serverless entry point
-├── src/
-│   ├── app/
-│   │   ├── auth/              # Authentication logic
-│   │   ├── config/            # Configuration files
-│   │   ├── middleware/        # Express middlewares
-│   │   └── modules/           # Feature modules
-│   ├── app.ts              # Express app setup
-│   └── server.ts           # Server configuration
-├── vercel.json             # Vercel deployment config
-├── package.json            # Dependencies
-└── tsconfig.json           # TypeScript config
+├── 📁 api/
+│   ├── index.js                    # Vercel serverless entry point (JS)
+│   └── index.ts                    # Vercel serverless entry point (TS)
+├── 📁 src/
+│   ├── 📁 app/
+│   │   ├── 📁 auth/                # Authentication Module
+│   │   │   ├── auth.controller.ts  # Auth controllers
+│   │   │   ├── auth.route.ts       # Auth routes
+│   │   │   ├── auth.service.ts     # Auth business logic
+│   │   │   └── forgotPassword.service.ts # Password reset
+│   │   ├── 📁 config/              # Configuration Files
+│   │   │   ├── envVars.ts          # Environment variables
+│   │   │   └── sslcommerz.ts       # Payment gateway config
+│   │   ├── 📁 interfaces/          # TypeScript Interfaces
+│   │   │   └── index.d.ts          # Global type definitions
+│   │   ├── 📁 middleware/          # Express Middlewares
+│   │   │   ├── AppError.ts         # Custom error class
+│   │   │   ├── checkAuth.ts        # JWT authentication
+│   │   │   ├── csrfProtection.ts   # CSRF protection
+│   │   │   ├── globalErrorHandler.ts # Global error handler
+│   │   │   ├── notFound.ts         # 404 handler
+│   │   │   └── validateRequest.ts  # Request validation
+│   │   ├── 📁 modules/             # Feature Modules
+│   │   │   ├── 📁 Admin/           # Admin Management
+│   │   │   │   ├── admin.controller.ts
+│   │   │   │   ├── admin.interface.ts
+│   │   │   │   ├── admin.routes.ts
+│   │   │   │   ├── admin.service.ts
+│   │   │   │   └── admin.validation.ts
+│   │   │   ├── 📁 Booking/         # Booking Management
+│   │   │   │   ├── booking.controller.ts
+│   │   │   │   ├── booking.interface.ts
+│   │   │   │   ├── booking.model.ts
+│   │   │   │   ├── booking.route.ts
+│   │   │   │   ├── booking.service.ts
+│   │   │   │   └── booking.validation.ts
+│   │   │   ├── 📁 Bus/             # Bus Management
+│   │   │   │   ├── bus.controller.ts
+│   │   │   │   ├── bus.interface.ts
+│   │   │   │   ├── bus.model.ts
+│   │   │   │   ├── bus.route.ts
+│   │   │   │   ├── bus.service.ts
+│   │   │   │   └── bus.validation.ts
+│   │   │   ├── 📁 Payment/         # Payment Processing
+│   │   │   │   ├── payment.controller.ts
+│   │   │   │   ├── payment.interface.ts
+│   │   │   │   ├── payment.model.ts
+│   │   │   │   ├── payment.route.ts
+│   │   │   │   └── payment.service.ts
+│   │   │   ├── 📁 route/           # Route Management
+│   │   │   │   ├── route.controller.ts
+│   │   │   │   ├── route.interface.ts
+│   │   │   │   ├── route.model.ts
+│   │   │   │   ├── route.route.ts
+│   │   │   │   ├── route.service.ts
+│   │   │   │   └── route.validation.ts
+│   │   │   ├── 📁 sslCommerz/      # Payment Gateway
+│   │   │   │   ├── sslCommerz.interface.ts
+│   │   │   │   └── sslCommerz.service.ts
+│   │   │   └── 📁 user/            # User Management
+│   │   │       ├── user.controller.ts
+│   │   │       ├── user.interface.ts
+│   │   │       ├── user.model.ts
+│   │   │       ├── user.route.ts
+│   │   │       └── user.service.ts
+│   │   ├── 📁 routes/              # Route Aggregation
+│   │   │   └── index.ts            # Main route file
+│   │   └── 📁 utlis/               # Utility Functions
+│   │       ├── catchAsync.ts       # Async error handler
+│   │       └── sendResponse.ts     # Response formatter
+│   ├── 📁 types/                   # TypeScript Types
+│   │   └── express.d.ts            # Express type extensions
+│   ├── app.ts                      # Express app setup
+│   └── server.ts                   # Server configuration
+├── 📁 project_requirement/         # Project Documentation
+│   └── 🚌 Bus Ticket Booking System (Backend Project Requirement).pdf
+├── .env                            # Environment variables (not in git)
+├── .env.example                    # Environment template
+├── .gitignore                      # Git ignore rules
+├── .vercelignore                   # Vercel ignore rules
+├── Frontend-Requirements.md        # Frontend specifications
+├── LICENSE                         # MIT License
+├── package.json                    # Dependencies & scripts
+├── package-lock.json              # Dependency lock file
+├── README.md                       # Project documentation
+├── tsconfig.json                   # TypeScript configuration
+└── vercel.json                     # Vercel deployment config
 ```
+
+### 📂 Folder Structure Explanation:
+
+- **`api/`** - Vercel serverless functions entry point
+- **`src/app/auth/`** - Authentication & authorization logic
+- **`src/app/config/`** - Configuration files & environment setup
+- **`src/app/middleware/`** - Express middlewares for security & validation
+- **`src/app/modules/`** - Feature-based modules (Admin, Bus, Booking, etc.)
+- **`src/app/routes/`** - Route aggregation and API endpoint management
+- **`src/app/utlis/`** - Utility functions and helpers
+- **`src/types/`** - TypeScript type definitions
+- **`project_requirement/`** - Project documentation and requirements
 
 ## 📊 Current Status
 
