@@ -4,8 +4,6 @@ import { RouteController } from "./route.controller";
 import {
   createRouteSchema,
   updateRouteSchema,
-  getRouteSchema,
-  deleteRouteSchema,
 } from "./route.validation";
 
 import { Role } from "../user/user.interface";

@@ -1,14 +1,10 @@
-// Import the main TypeScript app
 const path = require('path');
 const fs = require('fs');
 
-// Check if compiled app exists, otherwise use basic setup
 let app;
 try {
-  // Try to import the compiled TypeScript app
   app = require('../dist/app.js').default || require('../dist/app.js');
 } catch (error) {
-  // Fallback to basic Express setup
   const express = require('express');
   const cors = require('cors');
   const mongoose = require('mongoose');
@@ -31,10 +27,10 @@ try {
       if (process.env.DB_URL) {
         await mongoose.connect(process.env.DB_URL);
         isConnected = true;
-        console.log("✅ MongoDB connected successfully!");
+        console.log("MongoDB connected successfully!");
       }
     } catch (err) {
-      console.error("❌ MongoDB connection error:", err);
+      console.error("MongoDB connection error:", err);
     }
   }
   
@@ -64,7 +60,7 @@ try {
     });
   });
   
-  // Sample bus route for testing
+  // bus route 
   app.get('/api/v1/bus', (req, res) => {
     res.status(200).json({
       success: true,

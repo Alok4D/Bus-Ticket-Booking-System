@@ -4,8 +4,6 @@ import validateRequest from "../../middleware/validateRequest";
 import {
   createBusSchema,
   updateBusSchema,
-  getBusSchema,
-  deleteBusSchema,
 } from "./bus.validation";
 import { checkAuth } from "../../middleware/checkAuth";
 import { Role } from "../user/user.interface";
