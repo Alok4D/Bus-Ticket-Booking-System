@@ -2,7 +2,7 @@
 
 ### 🎫 Complete Bus Reservation & Payment Management System
 
-**🌐 LIVE API:** https://bus-ticket-booking-server-gules.vercel.app/
+**🌐 LIVE API:** https://bus-ticket-booking-server-166bgunnu-alok-roys-projects.vercel.app
 
 A full-featured **Bus Ticket Booking System** with secure payment integration, user management, and admin dashboard for managing bus operations.
 
@@ -143,7 +143,7 @@ This project is a **complete bus ticket booking platform** where:
 
 ## 🌐 Live API Endpoints
 
-**Base URL:** https://bus-ticket-booking-system-virid.vercel.app
+**Base URL:** https://bus-ticket-booking-server-166bgunnu-alok-roys-projects.vercel.app
 
 ### System Status
 ```
@@ -170,20 +170,19 @@ GET  /api/user/all-users          # Get all users (Admin)
 
 ### Bus Management
 ```
-GET    /api/bus                   # Get all buses
-POST   /api/bus                   # Create bus (Admin)
-GET    /api/bus/:id               # Get bus details
-PUT    /api/bus/:id               # Update bus (Admin)
-DELETE /api/bus/:id               # Delete bus (Admin)
+GET    /api/v1/bus               # Get all buses with route details
+POST   /api/v1/bus               # Create bus (Admin)
 ```
 
 ### Route Management
 ```
-GET    /api/route                 # Get all routes
-POST   /api/route                 # Create route (Admin)
-GET    /api/route/:id             # Get route details
-PUT    /api/route/:id             # Update route (Admin)
-DELETE /api/route/:id             # Delete route (Admin)
+GET    /api/v1/route             # Get all routes
+POST   /api/v1/route             # Create route (Admin)
+```
+
+### Database Connection
+```
+GET    /api/v1/db-test           # Test database connection
 ```
 
 ### Booking Management
@@ -307,16 +306,31 @@ npm start
 ```javascript
 {
   busName: String,
-  busNumber: String (unique),
-  capacity: Number,
-  busType: String,
-  amenities: [String],
-  isActive: Boolean
+  busNumber: String,
+  route: ObjectId (ref: Route),
+  totalSeats: Number,
+  availableSeats: Number,
+  fare: Number,
+  departureTime: String,
+  arrivalTime: String,
+  createdAt: Date,
+  updatedAt: Date
 }
 ```
 
 ### Route Collection
 ```javascript
+{
+  origin: String,
+  destination: String,
+  distance: Number,
+  createdAt: Date,
+  updatedAt: Date
+}
+```
+
+### Booking Collection
+```javascriptcript
 {
   source: String,
   destination: String,
@@ -362,13 +376,22 @@ npm start
 **Test the live API:**
 ```bash
 # API Status
-curl https://bus-ticket-booking-system-virid.vercel.app/
+curl https://bus-ticket-booking-server-166bgunnu-alok-roys-projects.vercel.app/
 
 # Health Check
-curl https://bus-ticket-booking-system-virid.vercel.app/health
+curl https://bus-ticket-booking-server-166bgunnu-alok-roys-projects.vercel.app/health
 
 # API Test Endpoint
-curl https://bus-ticket-booking-system-virid.vercel.app/api/v1/test
+curl https://bus-ticket-booking-server-166bgunnu-alok-roys-projects.vercel.app/api/v1/test
+
+# Get All Buses
+curl https://bus-ticket-booking-server-166bgunnu-alok-roys-projects.vercel.app/api/v1/bus
+
+# Get All Routes
+curl https://bus-ticket-booking-server-166bgunnu-alok-roys-projects.vercel.app/api/v1/route
+
+# Database Connection Test
+curl https://bus-ticket-booking-server-166bgunnu-alok-roys-projects.vercel.app/api/v1/db-test
 ```
 
 ### Local Testing
@@ -399,11 +422,11 @@ npm run test:watch
 
 ### ✅ Live Deployment Status
 - ✅ **Deployed on:** Vercel
-- ✅ **Live URL:** https://bus-ticket-booking-server-gules.vercel.app/
+- ✅ **Live URL:** https://bus-ticket-booking-server-166bgunnu-alok-roys-projects.vercel.app
 - ✅ **Environment:** Production
 - ✅ **Database:** MongoDB Atlas (Connected)
 - ✅ **SSL:** Enabled (Vercel Auto-SSL)
-- ✅ **Payment Gateway:** SSLCommerz Sandbox
+- ✅ **API Endpoints:** Bus & Route Management Working
 - ✅ **Auto-Deploy:** GitHub Integration
 
 ### Quick Deploy Commands
@@ -561,10 +584,12 @@ Bus-Ticket-Booking-System/
 
 - ✅ **Backend API:** Deployed & Running
 - ✅ **Database:** Connected (MongoDB Atlas)
-- ✅ **Authentication:** JWT Implementation Ready
-- ✅ **Payment Gateway:** SSLCommerz Integration Ready
+- ✅ **Bus Management:** GET/POST endpoints working
+- ✅ **Route Management:** GET/POST endpoints working
+- ✅ **Database Integration:** Real data from MongoDB
+- ⚠️ **Authentication:** Implementation in progress
+- ⚠️ **Payment Gateway:** Integration pending
 - ⚠️ **Frontend:** Not Connected (Next Phase)
-- ⚠️ **Full API Routes:** Partially Implemented
 
 ---
 

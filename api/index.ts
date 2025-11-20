@@ -51,38 +51,8 @@ try {
       uptime: process.uptime()
     });
   });
-  
-  app.get('/api/v1/test', (req, res) => {
-    res.status(200).json({
-      success: true,
-      message: 'API endpoint working - Basic setup',
-      data: null
-    });
-  });
-  
-  // bus route 
-  app.get('/api/v1/bus', (req, res) => {
-    res.status(200).json({
-      success: true,
-      message: 'Bus endpoint working',
-      data: [
-        {
-          id: '1',
-          busName: 'Green Line',
-          busNumber: 'GL-001',
-          capacity: 40,
-          busType: 'AC'
-        },
-        {
-          id: '2', 
-          busName: 'Shyamoli',
-          busNumber: 'SH-002',
-          capacity: 45,
-          busType: 'Non-AC'
-        }
-      ]
-    });
-  });
+
+
   
   // 404 handler
   app.use('*', (req, res) => {
